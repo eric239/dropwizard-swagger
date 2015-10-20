@@ -15,11 +15,6 @@
  */
 package io.federecio.dropwizard.swagger.selenium.auth;
 
-import com.google.common.base.Optional;
-import io.dropwizard.auth.AuthFactory;
-import io.dropwizard.auth.AuthenticationException;
-import io.dropwizard.auth.Authenticator;
-import io.dropwizard.auth.oauth.OAuthFactory;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.TestApplication;
 import io.federecio.dropwizard.swagger.TestConfiguration;
@@ -34,7 +29,7 @@ public class TestAuthApplication extends TestApplication {
         super.run(configuration, environment);
         environment.jersey().register(new AuthResource());
 
-        environment.jersey().register(AuthFactory.binder(new OAuthFactory<>(new Authenticator<String, String>() {
+        /*environment.jersey().register(AuthFactory.binder(new OAuthFactory<>(new Authenticator<String, String>() {
             @Override
             public Optional<String> authenticate(String token) throws AuthenticationException {
                 if ("secret" .equals(token)) {
@@ -44,6 +39,6 @@ public class TestAuthApplication extends TestApplication {
             }
         },
                 "SUPER SECRET STUFF",
-                String.class)));
+                String.class)));*/
     }
 }
