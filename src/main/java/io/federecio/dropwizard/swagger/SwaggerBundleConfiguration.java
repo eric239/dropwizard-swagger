@@ -17,6 +17,8 @@ package io.federecio.dropwizard.swagger;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.models.Info;
+
 
 /**
  * For the meaning of all these properties please refer to Swagger documentation or {@link io.swagger.jaxrs.config.BeanConfig}
@@ -56,6 +58,12 @@ public class SwaggerBundleConfiguration {
 
     @JsonProperty
     private String licenseUrl;
+
+    @JsonProperty
+    private String[] schemes;
+
+    @JsonProperty
+    private Info info;
 
     /**
      * For most of the scenarios this property is not needed.
@@ -131,6 +139,22 @@ public class SwaggerBundleConfiguration {
 
     public void setLicenseUrl(String licenseUrl) {
         this.licenseUrl = licenseUrl;
+    }
+
+    public String[] getSchemes() {
+        return schemes;
+    }
+
+    public Info getInfo() {
+        return info;
+    }
+
+    public void setInfo(final Info info) {
+        this.info = info;
+    }
+
+    public void setSchemes(final String[] schemes) {
+        this.schemes = schemes;
     }
 
     public String getUriPrefix() {

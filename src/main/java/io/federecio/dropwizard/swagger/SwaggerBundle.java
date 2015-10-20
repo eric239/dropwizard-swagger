@@ -18,7 +18,6 @@ package io.federecio.dropwizard.swagger;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
-
 import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;
 import io.dropwizard.assets.AssetsBundle;
@@ -26,6 +25,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import io.swagger.jaxrs.config.BeanConfig;
+
 
 /**
  * A {@link io.dropwizard.ConfiguredBundle} that provides hassle-free configuration of Swagger and Swagger UI
@@ -97,6 +97,10 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
             config.setTermsOfServiceUrl(swaggerBundleConfiguration.getTermsOfServiceUrl());
         }
 
+        if (swaggerBundleConfiguration.getSchemes() != null && swaggerBundleConfiguration.getSchemes().length > 0) {
+            config.setSchemes(swaggerBundleConfiguration.getSchemes());
+        }
+
         config.setBasePath(urlPattern);
 
         if (swaggerBundleConfiguration.getResourcePackage() != null) {
@@ -105,7 +109,10 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
             throw new IllegalStateException("Resource package needs to be specified for Swagger to correctly detect annotated resources");
         }
 
-
         config.setScan(true);
+
+        if (swaggerBundleConfiguration.getInfo() != null) {
+            config.setInfo(swaggerBundleConfiguration.getInfo());
+        }
     }
 }
